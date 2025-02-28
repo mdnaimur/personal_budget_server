@@ -1,0 +1,32 @@
+{
+  "name": "personal_budget_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index",
+    "dev": "nodemon --exec ts-node ./src/index.ts"
+  },
+  "keywords": [
+    "mdnaimur",
+    "budget"
+  ],
+  "author": "Md Naimur Rahman",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^22.13.5",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "class-validator": "^0.14.1",
+    "pg": "^8.13.3",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
+  }
+}
