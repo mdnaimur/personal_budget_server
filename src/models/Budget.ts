@@ -1,7 +1,8 @@
 import { IsDate, validateOrReject } from "class-validator";
-import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { getInvalidMessage } from "../helper/validation-messages";
+import { CategoryBudget } from "./CategoryBudget";
 
 @Entity()
 export class Budget extends BaseEntity {
@@ -14,6 +15,9 @@ export class Budget extends BaseEntity {
     @IsDate({message:getInvalidMessage('Month')})
     month: Date;
 
+    @OneToMany(() => CategoryBudget, (categoryBudget) => categoryBudget.budget)
+    categoryBudgets: CategoryBudget[]
+    
     @BeforeInsert()
     @BeforeUpdate()
     async validate() {

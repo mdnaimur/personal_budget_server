@@ -1,9 +1,10 @@
 import * as bcrypt from 'bcrypt';
 
 import { IsEmail, IsOptional, Length, Matches, MaxLength, validateOrReject } from "class-validator";
-import { AfterLoad, BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { AfterLoad, BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 import { getInvalidMessage } from "../helper/validation-messages";
+import { Category } from './Category';
 
 @Entity()
 @Unique(['email'])
@@ -32,6 +33,9 @@ export class User extends BaseEntity {
     @MaxLength(3, { message: getInvalidMessage('Currency') })
     @IsOptional()
     currency: string;
+
+    @OneToMany(() => Category, (category) => category.user)
+    categories: Category[]
 
     private previousPassword: string;
 

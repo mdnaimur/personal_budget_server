@@ -1,7 +1,8 @@
 import { IsDate, IsDecimal, validateOrReject } from "class-validator";
-import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 import { getInvalidMessage } from "../helper/validation-messages";
+import { CategoryBudget } from "./CategoryBudget";
 
 @Entity()
 export class Transaction extends BaseEntity {
@@ -18,6 +19,9 @@ export class Transaction extends BaseEntity {
     @Column()
     @IsDate({message:getInvalidMessage('Date')})
     date: Date;
+
+    @ManyToOne(() => CategoryBudget, (categoryBudget) => categoryBudget.transations)
+    categoryBudget: CategoryBudget
 
     @BeforeInsert()
     @BeforeUpdate()
