@@ -1,14 +1,17 @@
 import * as bcrypt from 'bcrypt';
 
 import { IsEmail, IsOptional, Length, Matches, MaxLength, validateOrReject } from "class-validator";
-import { AfterLoad, BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { AfterLoad, BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 import { getInvalidMessage } from "../helper/validation-messages";
+import { Budget } from './Budget';
 import { Category } from './Category';
+import ExtendedBaseEntity from './extended-base-entity';
+import { Transaction } from './Transaction';
 
 @Entity()
 @Unique(['email'])
-export class User extends BaseEntity {
+export class User extends ExtendedBaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -36,6 +39,12 @@ export class User extends BaseEntity {
 
     @OneToMany(() => Category, (category) => category.user)
     categories: Category[]
+
+    @OneToMany(() => Budget, (budget) => budget.user)
+    budgets: Budget[];
+  
+    @OneToMany(() => Transaction, (transaction) => transaction.user)
+    transactions: Transaction[]
 
     private previousPassword: string;
 

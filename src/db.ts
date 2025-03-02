@@ -1,9 +1,8 @@
 import "reflect-metadata";
 
-import { Category } from "./models/Category";
-
 import { DataSource } from "typeorm";
 import { Budget } from "./models/Budget";
+import { Category } from "./models/Category";
 import { CategoryBudget } from "./models/CategoryBudget";
 import { Transaction } from "./models/Transaction";
 import { User } from "./models/User";

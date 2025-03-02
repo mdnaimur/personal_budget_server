@@ -1,8 +1,9 @@
 import { IsDecimal, IsEnum, Length, validateOrReject } from "class-validator";
-import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { getInvalidMessage } from "../helper/validation-messages";
 import { CategoryBudget } from "./CategoryBudget";
+import ExtendedBaseEntity from "./extended-base-entity";
 import { User } from "./User";
 
 export enum CategoryType {
@@ -14,7 +15,7 @@ export enum CategoryType {
 
 
 @Entity()
-export class Category  extends BaseEntity {
+export class Category  extends ExtendedBaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;

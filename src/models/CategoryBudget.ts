@@ -1,13 +1,14 @@
 import { IsDecimal, validateOrReject } from "class-validator";
-import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { getInvalidMessage } from "../helper/validation-messages";
 import { Budget } from "./Budget";
 import { Category } from "./Category";
+import ExtendedBaseEntity from "./extended-base-entity";
 import { Transaction } from "./Transaction";
 
 @Entity()
-export class CategoryBudget extends BaseEntity {
+export class CategoryBudget extends ExtendedBaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
